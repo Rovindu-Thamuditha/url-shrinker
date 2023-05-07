@@ -1,5 +1,6 @@
 import os
 import json
+import urllib
 import requests
 
 
@@ -19,7 +20,7 @@ V2LINKS_API = data['v2links-api']
 
 def select_host(host, url):
     if host == 'cuttly':
-        cuttly(url)
+        short_url = cuttly(url)
     
     elif host == 'adfocus':
         pass
@@ -33,12 +34,14 @@ def select_host(host, url):
     else:
         pass
 
+    return short_url
+
 #Fetching data through the relevant api
 
 def cuttly(url):
-    api_endpoint = "https://api.cutt.ly/v1" 
-    api_url = f"{api_endpoint}/shorten?apiKey={CUTTLY_API}&short={url}"
+    api_endpoint = "http://cutt.ly/api/api.php" 
+    url = urllib.parse.quote(url) #Encoding URL
+    api_url = f"{api_endpoint}?key={CUTTLY_API}&short={url}"
     cuttly_response = requests.get(api_url).json()
-    
     short_url = cuttly_response["url"]["shortLink"]
     return short_url
