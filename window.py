@@ -37,8 +37,8 @@ class MainWindow(tk.Tk):
         
 
     def shrink_url(self):
-        self.long_url = self.long_url.get()
-        self.shrink_url = shortner.select_host(host='cuttly', url=self.long_url)
+        self.long_url_str = self.long_url.get()
+        self.shrink_url = shortner.select_host(host='cuttly', url=self.long_url_str)
         self.shortened_url.configure(text=f"Shortened URL: {self.shrink_url}")
 
 if __name__ == "__main__":
