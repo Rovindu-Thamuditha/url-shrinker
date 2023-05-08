@@ -6,5 +6,9 @@ This is a URL shrinker made using Python and tkinter. It allows users to enter a
 To use the URL shrinker, you'll need to have Python 3 installed on your computer. You can download and install Python from the official Python website.
 
 Once you have Python installed, you can clone this repository and run the following command to install the required dependencies:
-```pip install -r requirements.txt
 ```
+pip install -r requirements.txt
+```
+
+## Usage
+To use the URL shrinker, simply run the __*url_shrinker.py*__ file:
