@@ -28,7 +28,7 @@ This project uses the following dependencies:
 - [pyperclip](https://github.com/asweigart/pyperclip) - A cross-platform clipboard module for Python
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Rovindu-Thamuditha/url-shrinker/blob/main/LICENSE) file for details.
 
 ## Acknowledgments
 - Thanks to pyperclip for providing the clipboard functionality used in this project.
