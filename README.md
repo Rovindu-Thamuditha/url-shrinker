@@ -35,5 +35,3 @@ This project uses the following dependencies:
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Rovindu-Thamuditha/url-shrinker/blob/main/LICENSE) file for details.
 
-## Acknowledgments
-- Thanks to pyperclip for providing the clipboard functionality used in this project.
