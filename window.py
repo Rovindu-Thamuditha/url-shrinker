@@ -22,7 +22,7 @@ class MainWindow(tk.Tk):
         self.main_frame.pack()
 
         #URL Input Box
-        self.entry_label = tk.Label(self.main_frame, text="Enter your long url:")
+        self.entry_label = tk.Label(self.main_frame, text="Enter your long url:", font=('Roboto', 12))
         self.entry_label.grid(row=0, column=0, padx=0, pady=10)
         self.long_url_in = tk.Entry(self.main_frame, width=40, textvariable=self.long_url)
         self.long_url_in.grid(row=1, column=0, padx=0, pady=3)

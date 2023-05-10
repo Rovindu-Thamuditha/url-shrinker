@@ -43,6 +43,5 @@ def cuttly(url):
     url = urllib.parse.quote(url) #Encoding URL
     api_url = f"{api_endpoint}?key={CUTTLY_API}&short={url}"
     cuttly_response = requests.get(api_url).json()
-    print(cuttly_response)
     short_url = cuttly_response["url"]["shortLink"]
     return short_url
