@@ -1,5 +1,10 @@
 
-# URL Shrinker
+<h1 align="center">URL Shrinker</h1>
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python Version](https://img.shields.io/badge/Python-3.7%20%7C%203.8%20%7C%203.9-blue)](https://www.python.org/downloads/)
+
+
 This is a URL shrinker made using Python and tkinter. It allows users to enter a long URL and get a shortened URL that they can use to share the link more easily.
 
 ## Installation
@@ -30,5 +35,3 @@ This project uses the following dependencies:
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/Rovindu-Thamuditha/url-shrinker/blob/main/LICENSE) file for details.
 
-## Acknowledgments
-- Thanks to pyperclip for providing the clipboard functionality used in this project.
