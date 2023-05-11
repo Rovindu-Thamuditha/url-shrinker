@@ -3,7 +3,6 @@ import json
 import urllib
 import requests
 
-
 #Setting up API keys
 
 with open('config.json','r') as file:
