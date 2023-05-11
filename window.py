@@ -1,7 +1,7 @@
 import shortner
 import tkinter as tk
-import tkinter.font as tkFont
 from tkinter import messagebox
+from PIL import Image, ImageTk
 
 
 class MainWindow(tk.Tk):
@@ -10,7 +10,7 @@ class MainWindow(tk.Tk):
 
         #Window Configurations
         self.title("URL Shrinker")
-        self.geometry("370x150")
+        self.geometry("372x150")
         self.resizable(height=False, width=False)
 
         #StrVariables
@@ -26,11 +26,11 @@ class MainWindow(tk.Tk):
 
 
         self.entry_label = tk.Label(self.main_frame, text="Enter your long url:", font=('Roboto', 12))
-        self.entry_label.grid(row=0, column=0, padx=0, pady=12)
+        self.entry_label.grid(row=0, column=0, padx=0, pady=11)
 
         #Host Provider
         self.host_menu = tk.OptionMenu(self.main_frame, self.selected_provider, *host_providers)
-        self.host_menu.grid(row=1, column=0, padx=0, pady=3)
+        self.host_menu.grid(row=1, column=0, padx=0, pady=0)
 
         #URL Input Box
         self.long_url_in = tk.Entry(self.main_frame, width=40, textvariable=self.long_url, font=('Roboto', 12))
