@@ -2,6 +2,9 @@ import os
 import json
 import urllib
 import requests
+import tkinter as tk
+from tkinter import messagebox
+
 
 
 #Setting up API keys
@@ -18,7 +21,7 @@ V2LINKS_API = data['v2links-api']
 
 #Selecting the Service Provider Function
 
-def select_host(host, url):
+"""def select_host(host, url):
     if host == 'cuttly':
         short_url = cuttly(url)
     
@@ -34,7 +37,7 @@ def select_host(host, url):
     else:
         pass
 
-    return short_url
+    return short_url"""
 
 #Fetching data through the relevant api
 
@@ -42,6 +45,29 @@ def cuttly(url):
     api_endpoint = "http://cutt.ly/api/api.php" 
     url = urllib.parse.quote(url) #Encoding URL
     api_url = f"{api_endpoint}?key={CUTTLY_API}&short={url}"
-    cuttly_response = requests.get(api_url).json()
-    short_url = cuttly_response["url"]["shortLink"]
-    return short_url
+    cuttly_response = requests.get(api_url)
+    cuttly_response_json = cuttly_response.json()
+
+    if cuttly_response.status_code == 200:
+        short_url = cuttly_response_json["url"]["shortLink"]
+        return short_url, 200
+
+    else:
+        error_msg = messagebox.showerror(f"Error {cuttly_response.status_code}" , "Error occured")
+        return error_msg
+    
+def adfocus():
+    error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")
+    return error_msg
+def shrinkearn():
+    error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")
+    return error_msg
+    
+def v2links():
+    error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")
+    return error_msg
+
+def bitly():
+    error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")
+    return error_msg
+

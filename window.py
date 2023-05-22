@@ -49,20 +49,39 @@ class MainWindow(tk.Tk):
         '''
         
 
-    def get_url(self):
-        self.long_url_str = self.long_url.get()
-        self.provider = self.selected_provider.get()
-        self.shrinked_url = shortner.select_host(host=self.provider, url=self.long_url_str)
-        return self.shrinked_url
-
     def shrink_url(self):
-        self.shrink_url = self.get_url()
-        self.long_url_in.delete(0, tk.END)
-        self.long_url_in.insert(0, self.shrinked_url)
-        window.clipboard_clear()
-        window.clipboard_append(self.shrinked_url)
-        messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
+        self.long_url_str = self.long_url.get() #getting the URL input
+        self.provider = self.selected_provider.get() #getting the host input
 
+        if self.provider == 'cuttly':
+            self.short_url = shortner.cuttly(self.long_url_str)
+            if self.short_url[1] == 200:
+                self.long_url_in.delete(0, tk.END)
+                self.long_url_in.insert(0, self.short_url)
+                window.clipboard_clear()
+                window.clipboard_append(self.short_url)
+                messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
+
+            else:
+                pass
+
+        
+        elif self.provider == 'adfocus':
+            shortner.adfocus()
+            
+        elif self.provider == 'shrinkearn':
+            shortner.shrinkearn()
+
+        elif self.provider == 'v2link':
+            shortner.v2links()
+
+        elif self.provider == 'bitly':
+            shortner.bitly()
+
+        else:
+            messagebox.showwarning(f"Invalid Host" , "Please choose a valid hosting provider.")
+            
+        
     '''def copy_url(self, event):
         self.long_url_str = self.long_url.get()
         self.shrink_url = self.get_url()'''
