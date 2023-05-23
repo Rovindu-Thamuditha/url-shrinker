@@ -47,40 +47,56 @@ class MainWindow(tk.Tk):
         self.shortened_url = tk.Label(self.main_frame, text='Shortened URL :')
         self.shortened_url.grid(row=3, column=0, padx=0, pady=0)
         '''
-        
+    
+
+    def check_url(self, url):
+        if not url.startswith('http://') and not url.startswith('https://'):
+            url = 'http://' + url
+
+        else:
+            pass
+
+        return url
 
     def shrink_url(self):
         self.long_url_str = self.long_url.get() #getting the URL input
-        self.provider = self.selected_provider.get() #getting the host input
+        self.url = self.check_url(self.long_url_str)
+        if self.url == None:
+            messagebox.showerror("Error", "Enter the URL that you want to shrink.")
+            pass
+        
+        elif len(self.url) > 3:  
+            self.provider = self.selected_provider.get() #getting the host input    
 
-        if self.provider == 'cuttly':
-            self.short_url = shortner.cuttly(self.long_url_str)
-            if self.short_url[1] == 200:
-                self.long_url_in.delete(0, tk.END)
-                self.long_url_in.insert(0, self.short_url)
-                window.clipboard_clear()
-                window.clipboard_append(self.short_url)
-                messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
+            if self.provider == 'cuttly':
+                self.short_url = shortner.cuttly(self.url)
+                if self.short_url[1] == 200:
+                    print (self.short_url[1])
+                    self.long_url_in.delete(0, tk.END)
+                    self.long_url_in.insert(0, self.short_url)
+                    window.clipboard_clear()
+                    window.clipboard_append(self.short_url)
+                    messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
+
+                else:
+                    messagebox.showerror("Error", "An unknown error occured. Make sure you have an active internet connection.")
+
+            
+            elif self.provider == 'adfocus':
+                shortner.adfocus()
+                
+            elif self.provider == 'shrinkearn':
+                shortner.shrinkearn()
+
+            elif self.provider == 'v2link':
+                shortner.v2links()
+
+            elif self.provider == 'bitly':
+                shortner.bitly()
 
             else:
-                pass
-
-        
-        elif self.provider == 'adfocus':
-            shortner.adfocus()
-            
-        elif self.provider == 'shrinkearn':
-            shortner.shrinkearn()
-
-        elif self.provider == 'v2link':
-            shortner.v2links()
-
-        elif self.provider == 'bitly':
-            shortner.bitly()
-
-        else:
-            messagebox.showwarning(f"Invalid Host" , "Please choose a valid hosting provider.")
-            
+                messagebox.showwarning(f"Invalid Host" , "Please choose a valid hosting provider.")
+                
         
     '''def copy_url(self, event):
         self.long_url_str = self.long_url.get()
