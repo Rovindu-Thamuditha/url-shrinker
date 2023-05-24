@@ -15,6 +15,7 @@ class MainWindow(tk.Tk):
 
         #StrVariables
         self.long_url = tk.StringVar(self)
+        self.long_url.set("")
         self.selected_provider = tk.StringVar(self)
         self.selected_provider.set("cuttly") #Default Option
 
@@ -52,34 +53,39 @@ class MainWindow(tk.Tk):
     def check_url(self, url):
         if not url.startswith('http://') and not url.startswith('https://'):
             url = 'http://' + url
-
-        else:
-            pass
-
         return url
 
     def shrink_url(self):
         self.long_url_str = self.long_url.get() #getting the URL input
-        self.url = self.check_url(self.long_url_str)
-        if self.url == None:
+        
+        if self.long_url_str == None:
             messagebox.showerror("Error", "Enter the URL that you want to shrink.")
             pass
         
-        elif len(self.url) > 3:  
+        elif len(self.long_url_str) > 3:  
+            self.url = self.check_url(self.long_url_str)
             self.provider = self.selected_provider.get() #getting the host input    
-
             if self.provider == 'cuttly':
-                self.short_url = shortner.cuttly(self.url)
-                if self.short_url[1] == 200:
-                    print (self.short_url[1])
+                self.short_url, self.status = shortner.cuttly(self.url)
+                if self.status == 7:
                     self.long_url_in.delete(0, tk.END)
                     self.long_url_in.insert(0, self.short_url)
                     window.clipboard_clear()
                     window.clipboard_append(self.short_url)
                     messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
+                    
+                elif self.status == 5 or self.status == 2:
+                    print("Invalid Link")
+                    messagebox.showerror("Invalid Link", "The provided url is invalid")
 
+                elif self.status == 1:
+                    print("Already shortened")
+                    messagebox.showerror("Error", "The link has already been shortened")
+
+                elif self.long_url_str == None:
+                    messagebox.showwarning("Warning!", "Enter the url.")
                 else:
-                    messagebox.showerror("Error", "An unknown error occured. Make sure you have an active internet connection.")
+                    messagebox.showerror("Error", "An error occured when contacting with the server.")
 
             
             elif self.provider == 'adfocus':
@@ -97,6 +103,8 @@ class MainWindow(tk.Tk):
             else:
                 messagebox.showwarning(f"Invalid Host" , "Please choose a valid hosting provider.")
                 
+        else:
+            messagebox.showerror("Error", "An unknown error occured.")
         
     '''def copy_url(self, event):
         self.long_url_str = self.long_url.get()

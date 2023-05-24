@@ -47,14 +47,18 @@ def cuttly(url):
     api_url = f"{api_endpoint}?key={CUTTLY_API}&short={url}"
     cuttly_response = requests.get(api_url)
     cuttly_response_json = cuttly_response.json()
+    print(cuttly_response_json)
 
     if cuttly_response.status_code == 200:
         short_url = cuttly_response_json["url"]["shortLink"]
-        return short_url, 200
-
+        status = cuttly_response_json['url']['status']
+        return short_url, status
+    
     else:
-        error_msg = messagebox.showerror(f"Error {cuttly_response.status_code}" , "Error occured")
-        return error_msg
+        status = cuttly_response_json['url']['status']
+        return None, status
+        """error_msg = messagebox.showerror(f"Error {cuttly_response.status_code}" , "Error occured")
+        return error_msg"""
     
 def adfocus():
     error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")
