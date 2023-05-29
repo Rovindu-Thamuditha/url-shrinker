@@ -58,11 +58,11 @@ class MainWindow(tk.Tk):
     def shrink_url(self):
         self.long_url_str = self.long_url.get() #getting the URL input
         
-        if self.long_url_str == None:
+        if self.long_url_str == '':
             messagebox.showerror("Error", "Enter the URL that you want to shrink.")
             pass
         
-        elif len(self.long_url_str) > 3:  
+        elif len(self.long_url_str) > 1:  
             self.url = self.check_url(self.long_url_str)
             self.provider = self.selected_provider.get() #getting the host input    
             if self.provider == 'cuttly':
@@ -75,11 +75,9 @@ class MainWindow(tk.Tk):
                     messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
                     
                 elif self.status == 5 or self.status == 2:
-                    print("Invalid Link")
                     messagebox.showerror("Invalid Link", "The provided url is invalid")
 
                 elif self.status == 1:
-                    print("Already shortened")
                     messagebox.showerror("Error", "The link has already been shortened")
 
                 elif self.long_url_str == None:
