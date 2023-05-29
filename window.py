@@ -75,11 +75,9 @@ class MainWindow(tk.Tk):
                     messagebox.showinfo("URL Copied", "URL has been copied to the clipboard.")
                     
                 elif self.status == 5 or self.status == 2:
-                    print("Invalid Link")
                     messagebox.showerror("Invalid Link", "The provided url is invalid")
 
                 elif self.status == 1:
-                    print("Already shortened")
                     messagebox.showerror("Error", "The link has already been shortened")
 
                 elif self.long_url_str == None:

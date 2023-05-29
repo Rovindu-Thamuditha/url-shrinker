@@ -47,7 +47,6 @@ def cuttly(url):
     api_url = f"{api_endpoint}?key={CUTTLY_API}&short={url}"
     cuttly_response = requests.get(api_url)
     cuttly_response_json = cuttly_response.json()
-    print(cuttly_response_json)
 
     if cuttly_response.status_code == 200:
         short_url = cuttly_response_json["url"]["shortLink"]
