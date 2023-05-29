@@ -58,11 +58,11 @@ class MainWindow(tk.Tk):
     def shrink_url(self):
         self.long_url_str = self.long_url.get() #getting the URL input
         
-        if self.long_url_str == None:
+        if self.long_url_str == '':
             messagebox.showerror("Error", "Enter the URL that you want to shrink.")
             pass
         
-        elif len(self.long_url_str) > 3:  
+        elif len(self.long_url_str) > 1:  
             self.url = self.check_url(self.long_url_str)
             self.provider = self.selected_provider.get() #getting the host input    
             if self.provider == 'cuttly':
