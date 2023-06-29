@@ -54,10 +54,17 @@ def cuttly(url):
         return short_url, status
     
     else:
-        status = cuttly_response_json['url']['status']
-        return None, status
-        """error_msg = messagebox.showerror(f"Error {cuttly_response.status_code}" , "Error occured")
-        return error_msg"""
+        try:
+            status = cuttly_response_json['url']['status']
+            return None, status
+            """error_msg = messagebox.showerror(f"Error {cuttly_response.status_code}" , "Error occured")
+            return error_msg"""
+
+        except:
+            status = cuttly_response_json['message']
+            error_msg = messagebox.showerror(f"Invalid API Key" , "Please add your api key to the config.json file.")
+            return None, error_msg
+
     
 def adfocus():
     error_msg = messagebox.showwarning(f"Coming Soon" , "Still we are working on this feature")

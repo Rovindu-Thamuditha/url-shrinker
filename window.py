@@ -82,8 +82,8 @@ class MainWindow(tk.Tk):
 
                 elif self.long_url_str == None:
                     messagebox.showwarning("Warning!", "Enter the url.")
-                else:
-                    messagebox.showerror("Error", "An error occured when contacting with the server.")
+                # else:
+                #     messagebox.showerror("Error", "An error occured when contacting with the server.")
 
             
             elif self.provider == 'adfocus':
